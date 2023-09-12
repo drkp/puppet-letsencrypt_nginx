@@ -49,15 +49,9 @@ define letsencrypt_nginx::server (
     $real_cron_success_command = $letsencrypt_nginx::cron_success_command
   }
 
-  if is_hash($::facts) {
-    $firstrun_fact = $::facts['letsencrypt_nginx_firstrun']
-  } else {
-    $firstrun_fact = $::letsencrypt_nginx_firstrun
-  }
+  $firstrun_fact = $::facts['letsencrypt_nginx_firstrun']
 
-  validate_array($exclude_domains)
   if $webroot_paths {
-    validate_legacy(Array, 'validate_array', $webroot_paths)
     $real_webroot_paths = $webroot_paths
   } else {
     $real_webroot_paths = [$letsencrypt_nginx::webroot]
@@ -66,7 +60,6 @@ define letsencrypt_nginx::server (
   }
 
   if $domains {
-    validate_array($domains)
     $real_domains = delete($domains, $exclude_domains)
   } else {
     if defined(Nginx::Resource::Server[$server]) {
