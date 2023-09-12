@@ -30,13 +30,13 @@
 #    These Parameters can be used to create instances of these defined types through hiera
 #
 class letsencrypt_nginx (
-  String $default_server_name        = 'default',
-  String $webroot                    = '/var/lib/letsencrypt/webroot',
-  Optional[String] $firstrun_webroot = undef, # For Debian & Nginx: /var/www/html
-  Boolean $firstrun_standalone       = false,
-  Hash $locations                    = {},
-  Hash $servers                      = {},
-  String $cron_success_command       = '/bin/systemctl reload nginx.service',
+  Variant[String, Boolean] $default_server_name        = 'default',
+  String $webroot                                      = '/var/lib/letsencrypt/webroot',
+  Optional[Variant[String, Boolean]] $firstrun_webroot = undef, # For Debian & Nginx: /var/www/html
+  Boolean $firstrun_standalone                         = false,
+  Hash $locations                                      = {},
+  Hash $servers                                        = {},
+  String $cron_success_command                         = '/bin/systemctl reload nginx.service',
 ) {
   include nginx
   require ::letsencrypt
