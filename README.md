@@ -2,15 +2,15 @@
 
 # letsencrypt_nginx
 
-#### Table of Contents
+## Table of Contents
 
 1. [Overview](#overview)
 2. [Module Description - What the module does and why it is useful](#module-description)
 3. [Setup - The basics of getting started with letsencrypt_nginx](#setup)
 4. [Usage - Configuration options and additional functionality](#usage)
 5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
-5. [Limitations - OS compatibility, etc.](#limitations)
-6. [Development - Guide for contributing to the module](#development)
+6. [Limitations - OS compatibility, etc.](#limitations)
+7. [Development - Guide for contributing to the module](#development)
 
 ## Overview
 
@@ -57,9 +57,7 @@ This will successfully configure nginx, the server and the ssl certificat in one
 Important: You should declare letsencrypt_nginx resources after the nginx resources.
 The fetching of the configured domains is parse order dependent.
 
-
 #### Let's encrypt nginx server
-
 
     nginx::resource::server { 'letsencrypt-test1.example.com':
       server_name      => [
@@ -121,9 +119,7 @@ If this is applied successfully, you can then add the ssl configuration to your 
     letsencrypt_nginx::servers:
       'letsencrypt-test1.example.com': {}
 
-
 ## Reference
-
 
 ### Class: letsencrypt_nginx
 
@@ -152,7 +148,6 @@ Let's Encrypt base configuration and hiera interface.
 
 * `locations`, `servers`:
   These Parameters can be used to create instances of these defined types through hiera
-
 
 ### Define: letsencrypt_nginx::server
 
@@ -187,7 +182,6 @@ Automatically get ssl certificate for nginx server
   Boolean indicating whether or not to schedule cron job for renewal.
   Runs daily but only renews if near expiration, e.g. within 10 days.
 
-
 ### Define: letsencrypt_nginx::location
 
 Configure acme-challenge location webroot for a nginx server
@@ -195,7 +189,6 @@ Configure acme-challenge location webroot for a nginx server
 #### Parameters
 
 * `server`: server to configure location for, defaults to $name
-
 
 ## Development
 
@@ -208,6 +201,7 @@ See [CHANGELOG.md](CHANGELOG.md)
 ## Contributors
 
 * Philipp Gassmann <phiphi@phiphi.ch>
+* Rachel Crowther <rachel.crowther@powtechnology.com>
 
 ## License
 
