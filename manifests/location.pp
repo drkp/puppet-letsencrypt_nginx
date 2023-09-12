@@ -18,10 +18,10 @@ define letsencrypt_nginx::location (
     } else {
       $server_ssl = true
     }
-    # getparam returns undef (or '' in Puppet 4) if specified false or if not defined.
+    # getparam returns undef if specified false or if not defined.
     # Set it to default of server param ssl.
     # Note: It should be true for every server except the default server
-    if ($server_ssl == undef or $server_ssl == '') {
+    if ($server_ssl == undef) {
       $real_server_ssl = false
     } else {
       $real_server_ssl = $server_ssl
