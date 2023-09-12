@@ -33,13 +33,13 @@
 #    Runs daily but only renews if near expiration, e.g. within 10 days.
 #
 define letsencrypt_nginx::server (
-  String $server                 = $name,
-  Array[String] $domains         = undef,
-  Array[String] $exclude_domains = [],
-  Array[String] $webroot_paths   = undef,
-  Array[String] $additional_args = undef,
-  Boolean $manage_cron           = true,
-  String $cron_success_command   = undef
+  String $server                           = $name,
+  Optional[Array[String]] $domains         = undef,
+  Array[String] $exclude_domains           = [],
+  Optional[Array[String]] $webroot_paths   = undef,
+  Optional[Array[String]] $additional_args = undef,
+  Boolean $manage_cron                     = true,
+  Optional[String] $cron_success_command   = undef
 ) {
   include letsencrypt_nginx
 
